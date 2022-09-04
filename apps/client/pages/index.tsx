@@ -2,7 +2,8 @@ import { Button } from "ui";
 
 export default function Web() {
   const fetchData = () => {
-    fetch("http://localhost:3001/api/ok")
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    fetch(`${API_URL}/ok`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
