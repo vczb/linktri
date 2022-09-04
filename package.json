@@ -1,0 +1,23 @@
+{
+  "name": "linktri",
+  "packageManager": "yarn@3.2.3",
+  "private": true,
+  "scripts": {
+    "dev:client": "yarn workspace @linktri/client dev",
+    "dev:server": "yarn workspace @linktri/server dev",
+    "start:client": "yarn workspace @linktri/client start",
+    "start:server": "yarn workspace @linktri/server start",
+    "build:client": "yarn workspace @linktri/client build",
+    "build:server": "yarn workspace @linktri/server build",
+    "build": "concurrently \"yarn build:server\" \"yarn build:client\"",
+    "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\"",
+    "start": "concurrently \"yarn start:server\" \"yarn start:client\""
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^7.3.0"
+  }
+}
