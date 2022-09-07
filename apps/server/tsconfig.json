@@ -11,5 +11,5 @@
     "types": ["express", "node"],
     "baseUrl": "."
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts"]
 }

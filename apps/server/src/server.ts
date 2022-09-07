@@ -2,9 +2,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+dotenv.config();
+
 import connectDB from "./database/mongodb";
 
-dotenv.config();
+import SessionController from "./controllers/SessionController";
 
 const app = express();
 const PORT = 3001;
@@ -19,6 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 connectDB();
+
+app.post("/api/signin", SessionController.signin);
+app.post("/api/signup", SessionController.signup);
 
 app.get("/", (req, res) => {
   res.send("Deployed successfully");
