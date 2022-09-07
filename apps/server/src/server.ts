@@ -1,6 +1,10 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./database/mongodb";
+
+dotenv.config();
 
 const app = express();
 const PORT = 3001;
@@ -13,6 +17,8 @@ app.use(
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+connectDB();
 
 app.get("/", (req, res) => {
   res.send("Deployed successfully");
