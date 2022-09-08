@@ -8,6 +8,8 @@ import connectDB from "./database/mongodb";
 
 import SessionController from "./controllers/SessionController";
 import ProfileController from "./controllers/ProfileController";
+import LinksController from "./controllers/LinksController";
+import authMiddleware from "./middlewares/authMiddleware";
 
 const app = express();
 const PORT = 3001;
@@ -23,16 +25,32 @@ app.use(bodyParser.json());
 
 connectDB();
 
+// Session
 app.post("/api/signin", SessionController.signin);
 app.post("/api/signup", SessionController.signup);
+
+// Profile
 app.get("/api/profile/:slug", ProfileController.show);
 
-app.get("/", (req, res) => {
-  res.send("Deployed successfully");
-});
+// Links
+app.post(
+  "/api/links",
+  [authMiddleware.verifyContentType, authMiddleware.verifyToken],
+  LinksController.create
+);
+app.delete(
+  "/api/links/",
+  [authMiddleware.verifyContentType, authMiddleware.verifyToken],
+  LinksController.delete
+);
+app.put(
+  "/api/links",
+  [authMiddleware.verifyContentType, authMiddleware.verifyToken],
+  LinksController.edit
+);
 
-app.get("/api/ok", (req: any, res: any) => {
-  return res.status(200).send({ message: "ok", time: new Date() });
+app.get("/", (req, res) => {
+  res.send("Server running successfully");
 });
 
 app.listen(PORT, () => {
