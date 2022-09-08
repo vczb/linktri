@@ -44,6 +44,7 @@ const SessionController = {
   },
   signup: (req, res) => {
     const user = new User({
+      username: req.body.username,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
     });
@@ -56,7 +57,7 @@ const SessionController = {
 
       res.send({
         message: "User was registered successfully!",
-        user: { id: user.id, email: user.email },
+        user: { id: user.id, username: user.username, email: user.email },
       });
     });
   },
