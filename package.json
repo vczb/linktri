@@ -11,13 +11,41 @@
     "build:server": "yarn workspace @linktri/server build",
     "build": "concurrently \"yarn build:server\" \"yarn build:client\"",
     "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\"",
-    "start": "concurrently \"yarn start:server\" \"yarn start:client\""
+    "start": "concurrently \"yarn start:server\" \"yarn start:client\"",
+    "prettier:format": "prettier --write \"./{apps,packages}/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "prettier:check": "prettier -c \"./{apps,packages}/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "prepare": "husky install"
   },
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "devDependencies": {
-    "concurrently": "^7.3.0"
+    "concurrently": "^7.3.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSameLine": false,
+    "bracketSpacing": true,
+    "embeddedLanguageFormatting": "auto",
+    "htmlWhitespaceSensitivity": "css",
+    "insertPragma": false,
+    "jsxSingleQuote": false,
+    "printWidth": 80,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "semi": true,
+    "singleQuote": false,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false,
+    "vueIndentScriptAndStyle": false
+  },
+  "lint-staged": {
+    "./{apps,packages}/**/*": "prettier:check"
   }
 }
