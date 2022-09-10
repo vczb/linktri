@@ -1,10 +1,38 @@
 # linktri
 
-MERN monorepo deployed at vercel
+It's an open source alternative to LinkTree
 
 ---
 
-### Envirovments:
+## Stack:
 
-- [`Client`](https://linktri-client.vercel.app/)
-- [`Server`](https://linktri-server.vercel.app/api/ok)
+Powered by yarn workspaces this project is a MERN monorepo.
+
+### What is inside?
+
+- common:
+
+  - [TypeScript](https://www.typescriptlang.org/)
+  - [Eslint](https://eslint.org/)
+  - [Prettier](https://prettier.io/)
+
+- server:
+
+  - [NodeJS](#)
+  - [MongoDB](#)
+  - [Express](#)
+
+- client:
+  - [NextJS](#)
+  - [React](#)
+
+## Contributing
+
+You can contribute to this project by opening an issue or creating a pull request.
+
+## Available commands
+
+- `build`: build both projects
+- `dev`: run apps as develop mode
+
+_check the package.json to see more commands_
