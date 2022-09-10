@@ -18,6 +18,7 @@ const ProfileController = {
     const { email, username } = user;
 
     res.status(200).send({
+      ok: true,
       email,
       username,
       links,
