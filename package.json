@@ -46,6 +46,6 @@
     "vueIndentScriptAndStyle": false
   },
   "lint-staged": {
-    "./{apps,packages}/**/*": "prettier:check"
+    "./{apps,packages}/**/*": "yarn prettier:check"
   }
 }
