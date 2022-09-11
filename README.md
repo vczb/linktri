@@ -25,6 +25,7 @@ Powered by yarn workspaces this project is a MERN monorepo.
 - client:
   - [NextJS](#)
   - [React](#)
+  - [Sagu-UI](https://github.com/vczb/sagu-ui)
 
 ## Contributing
 
