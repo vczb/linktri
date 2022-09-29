@@ -10,12 +10,12 @@ const SessionController = {
     }).exec((err: Error, user) => {
       if (err) {
         console.log("err", err);
-        res.status(500).send({ message: err });
+        res.status(500).send({ ok: false, message: err });
         return;
       }
 
       if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+        return res.status(404).send({ ok: false, message: "User Not found." });
       }
 
       const passwordIsValid = bcrypt.compareSync(
@@ -25,6 +25,7 @@ const SessionController = {
 
       if (!passwordIsValid) {
         return res.status(401).send({
+          ok: false,
           accessToken: null,
           message: "Invalid Password!",
         });
@@ -37,6 +38,7 @@ const SessionController = {
       });
 
       res.status(200).send({
+        ok: true,
         email: user.email,
         accessToken: token,
       });
@@ -49,13 +51,20 @@ const SessionController = {
       password: bcrypt.hashSync(req.body.password, 8),
     });
 
-    user.save((err: Error, user) => {
+    user.save((err: Error & { code: number }, user) => {
       if (err) {
-        res.status(500).send({ message: err });
+        let message = "Unespected error";
+
+        if (err.code === 11000) {
+          message = "User already exists";
+        }
+
+        res.status(500).send({ ok: false, message });
         return;
       }
 
       res.send({
+        ok: true,
         message: "User was registered successfully!",
         user: { id: user.id, username: user.username, email: user.email },
       });
